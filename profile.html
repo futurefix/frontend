@@ -349,7 +349,7 @@ table th {
     e.preventDefault();
     const aadhaar = this.aadhaar.value;
 
-    const res = await fetch('http://localhost:5000/login', {
+    const res = await fetch('https://backend-arre.onrender.com/login', {
       method: 'POST',
       headers:{ 'Content-Type':'application/json' },
       body: JSON.stringify({ aadhaar })
@@ -365,7 +365,7 @@ table th {
   });
 
   async function renderProfile(user){
-    const plansRes = await fetch('http://localhost:5000/admin/plans');
+    const plansRes = await fetch('https://backend-arre.onrender.com/admin/plans');
     const plans = await plansRes.json();
 
     let html = `
@@ -465,7 +465,7 @@ function withdrawInvestment(index) {
   const inv = currentUser.investments[index];
   if (confirm(`Withdraw ₹${inv.profit.toFixed(2)} from ${inv.plan}?`)) {
     // You can call your API to process withdrawal
-    fetch('http://localhost:5000/withdraw-investment', {
+    fetch('https://backend-arre.onrender.com/withdraw-investment', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ aadhaar: currentUser.aadhaar, investmentId: inv._id })
@@ -502,7 +502,7 @@ async function submitWithdraw(){
   }
 
   try {
-    const res = await fetch('http://localhost:5000/withdraw-referral', {
+    const res = await fetch('https://backend-arre.onrender.com/withdraw-referral', {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body: JSON.stringify({
@@ -554,3 +554,4 @@ async function submitWithdraw(){
 
 </body>
 </html>
+
