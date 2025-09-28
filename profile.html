@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<style>
+  input {
+    width: 300px;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 10px;
+  }
+  button {
+    color: white;
+    background-color: rgb(158, 39, 255);
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 10px;
+  }
+
+  .parent {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  /* ✅ Responsive fix for small screens */
+  @media (max-width: 600px) {
+    .parent { grid-template-columns: 1fr; }
+    .div7, .div8 { background-color: lightgreen; border-radius: 7px; padding: 10px; }
+    input { width: 80%; margin-bottom: 8px; }
+    button { width: 83%; }
+  }
+  .par { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+
+  /* ✅ Simple modal popup */
+  #withdrawModal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center; align-items: center;
+  }
+  #withdrawModal .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+  }
+  .analysis {
+    
+  padding: 50px 20px;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.analysis h2 {
+  padding-top: 50px;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #0d6efd;
+}
+
+.analysis p {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.asset {
+  margin: 30px auto;
+  max-width: 600px;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.asset h3 {
+  margin-bottom: 15px;
+  color: #6610f2;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table th, table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background: #0d6efd;
+  color: white;
+
+}
+
+.prediction {
+  padding: 60px 20px;
+  background: #0d6efd;
+  color: white;
+  text-align: center;
+}
+
+.prediction h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.prediction p {
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+  color: #966161;
+}
+
+.prediction-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  color: #0d6efd;
+  border-radius: 15px;
+  padding: 25px;
+  width: 250px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.card h3 {
+  margin-bottom: 10px;
+}
+
+.card .percent {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #6610f2;
+  display: block;
+  margin: 10px 0;
+}
+</style>
+
+<body>
+  <form id="loginForm" style="text-align: center; padding: 20px; border-radius: 10px; background-color: rgb(0, 224, 150);">
+    <h3> Enter Your Secret Id.</h3>
+    <input type="text" name="aadhaar" placeholder="Enter Secret Number" required>
+    <button type="submit">Login</button>
+  </form>
+
+
+
+  
+  <div id="profile" style="text-align: center;"></div>
+
+
+
+  <div style="width: 100%; text-align: center;">
+  <h3>Do you want more invest </h3>
+  <a href="form.html"><button type="submit">More Invest</button></a>
+  <p>To make another investment, click "More Invest" and enter your same Secret Number in the form.</p>
+
+<!-- Profit Analysis Section -->
+<section id="analysis" class="analysis">
+  <h2>Profit Analysis</h2>
+  <p>Check how your investments grow over the years with FutureFix secure assets.</p>
+
+  <!-- Land Analysis -->
+  <div class="asset">
+    <h3>Land Value Growth</h3>
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>Value (₹)</th>
+        <th>Growth (%)</th>
+      </tr>
+      <tr>
+        <td>Current</td>
+        <td>₹10,00,000</td>
+        <td>-</td>
+      </tr>
+     
+      <tr>
+        <td>After 3 Years</td>
+        <td>₹15,50,000</td>
+        <td>+55%</td>
+      </tr>
+      <tr>
+        <td>After 4 Years</td>
+        <td>₹18,00,000</td>
+        <td>+80%</td>
+      </tr>
+      <tr>
+        <td>After 5 Years</td>
+        <td>₹19,00,000</td>
+        <td>+90%</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Flat Analysis -->
+  <div class="asset">
+    <h3>Flat/Room Value Growth</h3>
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>Value (₹)</th>
+        <th>Growth (%)</th>
+      </tr>
+      <tr>
+        <td>Current</td>
+        <td>₹25,00,000</td>
+        <td>-</td>
+      </tr>
+     
+        <td>After 3 Years</td>
+        <td>₹33,00,000</td>
+        <td>+32%</td>
+      </tr>
+      <tr>
+        <td>After 4 Years</td>
+        <td>₹38,00,000</td>
+        <td>+52%</td>
+      </tr>
+      <tr>
+        <td>After 5 Years</td>
+        <td>₹43,00,000</td>
+        <td>+72%</td>
+      </tr>
+    </table>
+  </div>
+
+ 
+
+  <!-- Home Analysis -->
+  <div class="asset">
+    <h3>Home Value Growth</h3>
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>Value (₹)</th>
+        <th>Growth (%)</th>
+      </tr>
+      <tr>
+        <td>Current</td>
+        <td>₹40,00,000</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>After 3 Years</td>
+        <td>₹57,00,000</td>
+        <td>+42%</td>
+      </tr>
+      <tr>
+        <td>After 4 Years</td>
+        <td>₹62,00,000</td>
+        <td>+55%</td>
+      </tr>
+      <tr>
+        <td>After 5 Years</td>
+        <td>₹72,00,000</td>
+        <td>+75%</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+
+<!-- Investment Prediction Confidence Section -->
+<section id="prediction" class="prediction">
+  <h2>Investment Prediction Confidence</h2>
+  <p style="color: #f9f9f9;">Our market research and analysis indicate high reliability for your investments in India.</p>
+
+  <div class="prediction-cards">
+    <!-- Land -->
+    <div class="card">
+      <h3>Land</h3>
+      <p>Expected Growth Accuracy:</p>
+      <span class="percent">+85%</span>
+      <p>Prime urban land investments have shown strong appreciation historically, making your prediction highly reliable.</p>
+    </div>
+
+    <!-- Flat -->
+    <div class="card">
+      <h3>Flats</h3>
+      <p>Expected Growth Accuracy:</p>
+      <span class="percent">+82%</span>
+      <p>Redevelopment projects in metro cities provide predictable returns for flat investments.</p>
+    </div>
+
+    <!-- Room -->
+    <div class="card">
+      <h3>Rooms</h3>
+      <p>Expected Growth Accuracy:</p>
+      <span class="percent">+80%</span>
+      <p>Rental demand in urban areas ensures steady growth in room investments.</p>
+    </div>
+
+    <!-- Home -->
+    <div class="card">
+      <h3>Homes</h3>
+      <p>Expected Growth Accuracy:</p>
+      <span class="percent">+88%</span>
+      <p>Premium home investments show consistent appreciation, especially in top cities like Bengaluru and NCR.</p>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- ✅ Withdraw Modal -->
+  <div id="withdrawModal">
+    <div class="modal-content">
+      <h3>Withdraw Referral Balance</h3>
+      <input type="text" id="upi" placeholder="Enter UPI ID (or leave blank)">
+      <br><br>
+      <input type="text" id="bankAccount" placeholder="Bank Account No">
+      <br><br>
+      <input type="text" id="ifsc" placeholder="IFSC Code">
+      <br><br>
+      <button onclick="submitWithdraw()">Submit</button>
+      <button onclick="closeModal()">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+  const planLock = { 
+    "1year":1,
+    "2year":2,
+    "3year":3,
+    "land3":3,
+    "land4":4,
+    "land5":5,
+    "flat3":3,
+    "flat4":4,
+    "flat5":5,
+    "home3":3,
+    "home4":4,
+    "home5":5 };
+
+  let currentUser = null;
+
+  document.getElementById('loginForm').addEventListener('submit', async function(e){
+    e.preventDefault();
+    const aadhaar = this.aadhaar.value;
+
+    const res = await fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers:{ 'Content-Type':'application/json' },
+      body: JSON.stringify({ aadhaar })
+    });
+    const data = await res.json();
+
+    if(data.success){
+      currentUser = data.user;
+      renderProfile(currentUser);
+    } else {
+      alert('User not found');
+    }
+  });
+
+  async function renderProfile(user){
+    const plansRes = await fetch('http://localhost:5000/admin/plans');
+    const plans = await plansRes.json();
+
+    let html = `
+      <h2>Hi, ${user.name}</h2>
+      <h5 style="color:#ff6666;">Note: Any Aproval may take  24 working hours</h5>
+      <p>Referral Balance: <strong style="color:green; font-size:18px;">₹${user.balance || 0}</strong></p>
+      
+      <div id="investments"></div>
+      <div class="parent">
+        <div style="background-color:orange;border-radius:10px;padding:10px;margin:10px">
+          <p><strong>Email:</strong> ${user.email}</p>
+          <p><strong>Phone:</strong> ${user.phone}</p>
+          <p><strong>Your Referral Code:</strong>
+            <span>${user.referralCode || 'Not generated'}</span>
+            <button onclick="navigator.clipboard.writeText('${user.referralCode || ''}')">Copy</button>
+          </p>
+        </div>
+        <div style="background-color:lightblue;border-radius:10px;padding:10px;margin:10px">
+          <p><strong>Referral Status:</strong> ${user.referralStatus || 'None'}</p>
+          <p>Referral Balance: <strong style="color:green; font-size:18px;">₹${user.balance || 0}</strong></p>
+          <button onclick="openModal()">Withdraw</button>
+          <h5 style="color:#ff6666;">Note: Any Aproval may take  6-12 working hours</h5>
+        </div>
+      </div>
+    `;
+
+    document.getElementById('profile').innerHTML = html;
+
+
+    let txHtml = "<h3>Transaction History</h3>";
+if(user.transactions && user.transactions.length > 0){
+  txHtml += `<table border="1" style="margin: auto; width: 80%; border-radius: 10px;">
+    <tr><th>Date</th><th>Type</th><th>Amount</th><th>Details</th></tr>`;
+  user.transactions.forEach(tx => {
+    txHtml += `
+      <tr>
+        <td>${new Date(tx.date).toLocaleString()}</td>
+        <td>${tx.type}</td>
+        <td>₹${tx.amount}</td>
+        <td>${tx.details || ""}</td>
+      </tr>`;
+  });
+  txHtml += "</table>";
+} else {
+  txHtml += "<p>No transactions yet</p>";
+}
+
+document.getElementById('profile').innerHTML += txHtml;
+
+    const invContainer = document.getElementById("investments");
+    invContainer.innerHTML = "";
+
+    user.investments.forEach((inv, i) => {
+  const investDate = new Date(inv.date);
+  const lockYears = planLock[inv.plan] || 0;
+  const unlockDate = new Date(investDate);
+  unlockDate.setFullYear(unlockDate.getFullYear() + lockYears);
+  const canWithdraw = new Date() >= unlockDate;
+
+  const plan = plans.find(p => p.name === inv.plan);
+  const profitPercentage = plan ? plan.profitPercentage : 0;
+  const yearlyProfit = inv.amount * (profitPercentage / 100);
+  const totalProfit = yearlyProfit.toFixed(2);
+
+  invContainer.innerHTML += `
+    <div class="par">
+      <div><p><strong>Current Profit:</strong> <strong style="color:green; ">₹${inv.profit.toFixed(2)}</strong></p></div>
+      <div><p><strong>Status:</strong> <strong style="color:green; font-size:18px;">${inv.status || 'Pending'}</strong></p></div>
+    </div>
+    <div style="border:1px solid #ccc;padding:10px;margin:10px 0;background:lightgrey;border-radius:10px; margin-left:12px; margin-right:12px">
+      <div class="parent">
+        <div>
+          <p><strong>Plan:</strong> ${formatPlanName(inv.plan)}</p>
+          <p><strong>Amount:</strong> ₹${inv.amount}</p>
+          <p><strong>Invested On:</strong> ${investDate.toLocaleString()}</p>
+        </div>
+        <div>
+          <p><strong>Predicted Profit:</strong> <strong style="color:blue; font-size:16;">₹${totalProfit} (${profitPercentage}%)</strong> </p>
+          <p><strong style="color:red;">Unlock Date:</strong><strong style="color:#ff6666; font-size:16;"> ${unlockDate.toLocaleString()}</strong></p>
+          <button ${canWithdraw ? "" : "disabled"} onclick="${canWithdraw ? `withdrawInvestment(${i})` : ""}">
+            ${canWithdraw ? "Withdraw" : "Locked"}
+          </button>
+        </div>
+      </div>
+    </div>`;
+});
+
+  }
+
+  // ✅ modal functions
+  function openModal(){ document.getElementById("withdrawModal").style.display="flex"; }
+  function closeModal(){ document.getElementById("withdrawModal").style.display="none"; }
+
+
+
+function withdrawInvestment(index) {
+  const inv = currentUser.investments[index];
+  if (confirm(`Withdraw ₹${inv.profit.toFixed(2)} from ${inv.plan}?`)) {
+    // You can call your API to process withdrawal
+    fetch('http://localhost:5000/withdraw-investment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ aadhaar: currentUser.aadhaar, investmentId: inv._id })
+    })
+    .then(res => res.json())
+    .then(data => {
+      if(data.success) {
+        alert('Withdrawal successful!');
+        inv.status = "Withdrawn";
+        renderProfile(currentUser);
+      } else {
+        alert(data.message);
+      }
+    });
+  }
+}
+
+  </script>
+  <script>
+async function submitWithdraw(){
+  const upi = document.getElementById("upi").value.trim();
+  const bankAccount = document.getElementById("bankAccount").value.trim();
+  const ifsc = document.getElementById("ifsc").value.trim();
+
+  if (!currentUser || !currentUser.aadhaar) {
+    alert("Please login first.");
+    return;
+  }
+
+  // Simple validation: require at least one of UPI or bank details
+  if (!upi && (!bankAccount || !ifsc)) {
+    alert("Enter UPI or Bank Account + IFSC for withdrawal.");
+    return;
+  }
+
+  try {
+    const res = await fetch('http://localhost:5000/withdraw-referral', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        aadhaar: currentUser.aadhaar,
+        upi, bankAccount, ifsc
+      })
+    });
+
+    const data = await res.json();
+    if (data.success) {
+      alert("Withdraw request sent successfully!");
+      closeModal();
+      // update local state
+      currentUser.referralStatus = "Withdrawal Requested ";
+      if (!currentUser.referralWithdrawRequest) currentUser.referralWithdrawRequest = {};
+      currentUser.referralWithdrawRequest = data.request || {
+        amount: currentUser.balance,
+        status: "Pending",
+        upi, bankAccount, ifsc, requestDate: new Date().toISOString()
+      };
+      renderProfile(currentUser);
+    } else {
+      alert(data.message || "Unable to send withdraw request");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Network or server error. Check console.");
+  }
+}
+</script>
+
+  <script>
+  // ✅ Convert plan code into human readable text
+  function formatPlanName(plan) {
+    // Handle cases like "flat4" → "Flat 4 Year"
+    if (/^(flat|land|home)(\d+)$/.test(plan)) {
+      const [, type, years] = plan.match(/(flat|land|home)(\d+)/);
+      return type.charAt(0).toUpperCase() + type.slice(1) + " " + years + " Year";
+    }
+    // Handle cases like "1year" → "1 Year"
+    if (/^(\d+)year$/.test(plan)) {
+      const [, years] = plan.match(/(\d+)year/);
+      return years + " Year";
+    }
+    // Fallback (just capitalize first letter)
+    return plan.charAt(0).toUpperCase() + plan.slice(1);
+  }
+</script>
+
+</body>
+</html>

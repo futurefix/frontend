@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invest Now - FutureFix</title>
+<style>
+  body {
+  padding-top: 0px; /* same as header height */
+}
+
+    header h1 { font-size: 1.4rem; }
+    
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    nav a:hover { color: #ffc107; }
+
+    /* Menu Icon (hidden by default on large screens) */
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+    }
+
+    /* Mobile Menu (hidden initially) */
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: #222;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 200px;
+      padding: 15px;
+    }
+    .mobile-nav a {
+      color: white;
+      padding: 10px 0;
+      border-bottom: 1px solid #444;
+    }
+    .mobile-nav a:hover { color: #ffc107; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .menu-icon { display: block; }
+    }
+  header {
+  background: linear-gradient(90deg,#0d6efd,#6610f2);
+  padding: 0 20px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+  position: fixed;   /* Fixes header */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;     /* Keeps it above other elements */
+}
+  :root {
+  --bg: #f0f9f8;
+  --card: #fff;
+  --accent: #4f46e5; /* Indigo */
+  --accent-hover: #4338ca;
+  --border: #e5e7eb;
+  --radius: 12px;
+  --shadow: 0 8px 20px rgba(0,0,0,0.05);
+  --muted: #6b7280;
+}
+.note {
+  font-size: 0.85rem;
+  color: #51c22f;   /* soft gray */
+  margin: 4px 0 12px;
+  line-height: 1.4;
+}
+
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Inter, Arial, sans-serif;
+}
+
+body {
+  background: linear-gradient(180deg, #57a6f5 0%, var(--bg) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+/* Container card */
+.container {
+  
+  background: var(--card);
+  padding: 28px;
+  border-radius: var(--radius);
+  max-width: 500px;
+  width: 100%;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+.container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #111827;
+  font-size: 1.5rem;
+}
+
+/* Labels (your <h3>) */
+form h3 {
+  margin: 16px 0 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fff;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+}
+
+/* File inputs */
+input[type="file"] {
+  border: none;
+  padding: 6px 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+button:hover {
+  background: var(--accent-hover);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+  }
+}
+
+</style>
+</head>
+<body>
+
+  <header>
+    <h1>FutureFix</h1>
+    
+    <!-- Desktop Nav -->
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#about">Plans</a>
+      <a href="#analysis">Analysis</a>
+      <a href="contact.html">Contact</a>
+      <a href="t&c.html">Terms & conditions</a>
+    </nav>
+    <a href="profile.html">
+    <button type="submit" style="padding: 10px; border-radius: 8px; background-color: #b91c1c; margin-bottom: 20px;">Investor Login</button>
+      </a>
+    <!-- Menu Icon for Mobile -->
+    <span class="menu-icon" onclick="toggleMenu()">☰</span>
+
+    <!-- Mobile Nav -->
+    <div class="mobile-nav" id="mobileMenu">
+      <a href="index.html">Home</a>
+       <a href="#about">Plans</a>
+      <a href="#analysis">Analysis</a>
+      <a href="contact.html">Contact</a>
+      <a href="t&c.html">Terms & conditions</a>
+      <a href="privacy.html">Privacy</a>
+    </div>
+    
+  </header>
+
+<div class="container">
+  <h2>Invest Now</h2>
+ <form id="investForm" enctype="multipart/form-data">
+  <h3>Full Name</h3>
+  <input type="text" name="name" placeholder="Enter Your Full Name" required>
+  <h3>Email Address</h3>
+  <input type="email" name="email" placeholder="Enter Your Email Address" required>
+  <h3>Phone no.</h3>
+  <input type="tel" name="phone" placeholder="Enter Your Phone No." required>
+  <h3>Referral Code</h3>
+<input type="text" name="referral" placeholder="Enter Referral Code (Optional)">
+
+<p class="note">🎁 Enter a valid referral code to get bonus benefits.</p>
+
+<h3>Create Secret</h3>
+<input type="text" 
+       name="aadhaar" 
+       placeholder="Create Secret No." 
+       required 
+       minlength="12" 
+       maxlength="16" 
+       pattern="[0-9]{12,16}"
+       inputmode="numeric">
+<p class="note">🔒 This secret number will be used for <strong>Login</strong> and <strong>Withdrawals</strong>.  
+It must be <strong>12–16 digits</strong> (numbers only).</p>
+
+
+  <h3>Upload Addhaar Front </h3>
+  <input type="file" name="front" required>
+  <h3>Upload Addhaar Back </h3>
+  <input type="file" name="back" required>
+  <h3>Choose Invest Plan </h3>
+  <select name="plan">
+    <option value="1year">1 Year</option>
+    <option value="2year">2 Year</option>
+    <option value="3year">3 Year</option>
+    
+    <option value="land3">Land 3 Year</option>
+    <option value="land4">Land 4 Year</option>
+    <option value="land5">Land 5 Year</option>
+    <option value="flat3">Flat 3 Year</option>
+    <option value="flat4">Flat 4 Year</option>
+    <option value="flat5">Flat 5 Year</option>
+    <option value="home3">Home 3 Year</option>
+    <option value="home4">Home 4 Year</option>
+    <option value="home5">Home 5 Year</option>
+  </select>
+
+
+  <h3>Insvestment Amount (₹)</h3>
+ 
+<input type="number" 
+       name="amount" 
+       placeholder="Amount" 
+       required 
+       min="1">
+<p class="note">💰 Minimum investment amount is starting <strong>₹699</strong>.</p>
+
+
+<div style="margin-top:14px">
+    <label style="display:flex;gap:10px;align-items:flex-start;">
+      <input id="agreeTnC" name="agreeTnC" type="checkbox" required="true" />
+      <span style="font-size:14px;color:#0f172a">
+        I have read and agree to the
+        <a href="t&c.html" target="_blank" rel="noopener noreferrer">Terms &amp; Conditions</a>
+        and the
+        <a href="privacy.html" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+        I understand that funds invested in a selected plan (1–5 years) are locked until maturity.
+      </span>
+    </label>
+    <div id="tncError" role="alert" aria-live="assertive" style="color:#b91c1c;margin-top:8px;display:none;font-size:13px">
+      You must agree to the Terms & Conditions and Privacy Policy to continue.
+    </div>
+  </div>
+
+
+  <button type="submit">Invest</button>
+</form>
+<!-- Razorpay checkout script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+document.getElementById('investForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  
+  const form = this;
+  const formData = new FormData(form);
+  const amount = form.amount.value;
+
+  // 1️⃣ Create Razorpay order from backend
+  const orderRes = await fetch('http://localhost:5000/create-order', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ amount: amount }) // amount in ₹
+  });
+
+  const orderData = await orderRes.json();
+
+  if(!orderData.success){
+    alert("Failed to create order");
+    return;
+  }
+
+  // 2️⃣ Open Razorpay checkout
+  const options = {
+    key: "rzp_live_RLHDh7PumgVdb8", // 🔑 Replace with your Razorpay Key ID
+    amount: orderData.amount, // in paise
+    currency: "INR",
+    name: "FutureFix Investments",
+    description: "Secure Investment Payment",
+    order_id: orderData.orderId,
+
+
+  handler: async function (response) {
+  const finalData = new FormData(form);
+  finalData.append("razorpay_payment_id", response.razorpay_payment_id);
+  finalData.append("razorpay_order_id", response.razorpay_order_id);
+  finalData.append("razorpay_signature", response.razorpay_signature);
+
+  const investRes = await fetch('http://localhost:5000/invest', {
+    method: 'POST',
+    body: finalData
+  });
+
+  const investData = await investRes.json();
+
+  if (investData.success) {
+    // ✅ Redirect to profile page after success
+    window.location.href = "profile.html"; 
+  } else {
+    alert(investData.message || "Something went wrong. Please contact support.");
+  }
+}
+
+,
+    theme: {
+      color: "#4f46e5"
+    }
+  };
+
+  const rzp = new Razorpay(options);
+  rzp.open();
+});
+</script>
+
+<script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.style.display = (menu.style.display === "flex") ? "none" : "flex";
+    }
+  </script>
+
+</body>
+</html>
