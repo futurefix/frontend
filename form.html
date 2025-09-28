@@ -313,7 +313,7 @@ document.getElementById('investForm').addEventListener('submit', async function(
   const amount = form.amount.value;
 
   // 1️⃣ Create Razorpay order from backend
-  const orderRes = await fetch('http://localhost:5000/create-order', {
+  const orderRes = await fetch('https://backend-arre.onrender.com/create-order', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ amount: amount }) // amount in ₹
@@ -342,7 +342,7 @@ document.getElementById('investForm').addEventListener('submit', async function(
   finalData.append("razorpay_order_id", response.razorpay_order_id);
   finalData.append("razorpay_signature", response.razorpay_signature);
 
-  const investRes = await fetch('http://localhost:5000/invest', {
+  const investRes = await fetch('https://backend-arre.onrender.com/invest', {
     method: 'POST',
     body: finalData
   });
@@ -377,3 +377,4 @@ document.getElementById('investForm').addEventListener('submit', async function(
 
 </body>
 </html>
+
